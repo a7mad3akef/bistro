@@ -1,0 +1,76 @@
+{
+  "name": "botkit",
+  "version": "0.4.3",
+  "description": "Building blocks for Building Bots",
+  "engines": {
+    "node": "7.10.1"
+  },
+  "main": "lib/Botkit.js",
+  "dependencies": {
+    "@google-cloud/vision": "^0.8.1",
+    "async": "^2.3.0",
+    "back": "^1.0.1",
+    "body-parser": "^1.14.2",
+    "botbuilder": "^3.2.3",
+    "botkit-middleware-bcrm": "0.0.4",
+    "botkit-storage-mongo": "^1.0.4",
+    "botkit-storage-mongoose": "git+https://github.com/jovrtn/botkit-storage-mongoose.git",
+    "botkit-studio-sdk": "^1.0.0",
+    "clone": "2.0.0",
+    "cloudinary": "^1.7.1",
+    "command-line-args": "^3.0.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.5",
+    "express": "^4.13.3",
+    "express-session": "^1.14.2",
+    "facebook-node-sdk": "^0.2.0",
+    "form-data": "^2.1.2",
+    "geocoder": "^0.2.2",
+    "google-panorama-by-location": "^4.1.1",
+    "https-proxy-agent": "^1.0.0",
+    "i": "^0.3.5",
+    "jfs": "^0.2.6",
+    "localtunnel": "^1.8.1",
+    "md5": "^2.1.0",
+    "mustache": "^2.2.1",
+    "node-static": "^0.7.9",
+    "npm": "^4.0.3",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "path": "^0.12.7",
+    "promise": "^7.1.1",
+    "randomstring": "^1.1.5",
+    "request": "^2.67.0",
+    "twilio": "^2.9.1",
+    "ware": "^1.3.0",
+    "wordhop": "^1.3.62",
+    "ws": "^1.1.1",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "jscs": "^2.7.0",
+    "mocha": "^2.4.5",
+    "should": "^8.0.2",
+    "winston": "^2.1.1"
+  },
+  "scripts": {
+    "pretest": "jscs ./lib/",
+    "test": "mocha tests/*.js",
+    "start": "node facebook_bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/howdyai/botkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/howdyai/botkit/issues"
+  },
+  "homepage": "http://howdy.ai/botkit",
+  "keywords": [
+    "bots",
+    "chatbots",
+    "slack"
+  ],
+  "author": "ben@xoxco.com",
+  "license": "MIT"
+}
