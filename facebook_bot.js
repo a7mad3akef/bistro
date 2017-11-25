@@ -46,7 +46,7 @@ var cloudinary = require('cloudinary');
 /*********WORDHOP********/
 // Takeover conversation (pause the bot and allow interaction with the user through Slack)
 var Wordhop = require('wordhop');
-var wordhop = Wordhop(process.env.wordhop_api_key, process.env.wordhop_client_key, {platform: 'messenger', token:process.env.page_token});
+// var wordhop = Wordhop(process.env.wordhop_api_key, process.env.wordhop_client_key, {platform: 'messenger', token:process.env.page_token});
 
 /**********bCRM*********/
 // Basic analytics and broadcast defined messages to users
@@ -263,68 +263,68 @@ controller.hears(['hi','hello', 'Hi', 'Hello', 'prout', 'Prout', 'start', 'Start
 
 // WORDHOP
 // Add the Wordhop middleware 
-controller.middleware.receive.use(wordhop.receive);
+// controller.middleware.receive.use(wordhop.receive);
 // reply to a direct message
-controller.middleware.send.use(wordhop.send);
+// controller.middleware.send.use(wordhop.send);
 
-// Handle forwarding the messages sent by a human through your bot 
-wordhop.on('chat response', function (message) {
-    bot.say(message);  // <= example of bot sending message 
-});
+// // Handle forwarding the messages sent by a human through your bot 
+// wordhop.on('chat response', function (message) {
+//     bot.say(message);  // <= example of bot sending message 
+// });
 
-wordhop.on('channel update', function (msg) {  
-    var channel = msg.channel;
-    var paused = msg.paused;
-    if(msg.paused === false) {
-      bot.replyWithTyping(msg.priorMessage, '🤖🤖🤖');
-      controller.storage.users.get(msg.channel, function(err, user) {
-        lastThread = user.last_thread;
-        switch(lastThread) {
-          case 'gitIntro': bot.startConversation(msg.priorMessage, gifIntro); break;
-          case 'testCategories': bot.startConversation(msg.priorMessage, testCategories); break;
-          case 'introApply': bot.startConversation(msg.priorMessage, introApply); break;
-          case 'applyStart': bot.startConversation(msg.priorMessage, applyStart); break;
-          case 'numberPlate_F': bot.startConversation(msg.priorMessage, numberPlate_F); break;
-          case 'whereAreYou':landmark1 = ''; landmark2 = ''; sangkat = ''; address = ''; addressComponents = ''; delete address; delete addressComponents; delete landmark1; delete landmark2; delete sangkat; bot.startConversation(msg.priorMessage, whereAreYou); break;
-          case 'shareGuarantor': bot.startConversation(msg.priorMessage, shareGuarantor); break;
-          case 'identity_F' : bot.startConversation(msg.priorMessage, identity_F); break;
-          default: bot.startConversation(msg.priorMessage, welcome);
-      }
-    });
-    }
-});
+// wordhop.on('channel update', function (msg) {  
+//     var channel = msg.channel;
+//     var paused = msg.paused;
+//     if(msg.paused === false) {
+//       bot.replyWithTyping(msg.priorMessage, '🤖🤖🤖');
+//       controller.storage.users.get(msg.channel, function(err, user) {
+//         lastThread = user.last_thread;
+//         switch(lastThread) {
+//           case 'gitIntro': bot.startConversation(msg.priorMessage, gifIntro); break;
+//           case 'testCategories': bot.startConversation(msg.priorMessage, testCategories); break;
+//           case 'introApply': bot.startConversation(msg.priorMessage, introApply); break;
+//           case 'applyStart': bot.startConversation(msg.priorMessage, applyStart); break;
+//           case 'numberPlate_F': bot.startConversation(msg.priorMessage, numberPlate_F); break;
+//           case 'whereAreYou':landmark1 = ''; landmark2 = ''; sangkat = ''; address = ''; addressComponents = ''; delete address; delete addressComponents; delete landmark1; delete landmark2; delete sangkat; bot.startConversation(msg.priorMessage, whereAreYou); break;
+//           case 'shareGuarantor': bot.startConversation(msg.priorMessage, shareGuarantor); break;
+//           case 'identity_F' : bot.startConversation(msg.priorMessage, identity_F); break;
+//           default: bot.startConversation(msg.priorMessage, welcome);
+//       }
+//     });
+//     }
+// });
 
-// PASSPORT AUTHENTIFICATION
-passport.use(new FacebookStrategy({
-    clientID: process.env.app_id,
-    clientSecret: process.env.app_secret,
-    callbackURL: process.env.app_host + '/auth/fb/callback',
-    profileFields: ['id', 'displayName', 'photos', 'email'],
-    passReqToCallback : true,
-    state: true,
-    enableProof: false
-  },
-  function(req, accessToken, refreshToken, profile, done) {
-    profile._json.access_token = accessToken;
-    profile._json.refresh_token = refreshToken;
-    console.log("accessToken:", accessToken);
-    console.log("refreshToken:", refreshToken);
-    console.log('JS obj' + profile);
-    console.log('JSON obj ' + JSON.stringify(profile, null, 2));
-    var save = {
-      ['facebook_profile'] : profile
-    };
-    responseStore.toDatabase(save, publicProfile);
-    done(null,profile);
-}));
+// // PASSPORT AUTHENTIFICATION
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.app_id,
+//     clientSecret: process.env.app_secret,
+//     callbackURL: process.env.app_host + '/auth/fb/callback',
+//     profileFields: ['id', 'displayName', 'photos', 'email'],
+//     passReqToCallback : true,
+//     state: true,
+//     enableProof: false
+//   },
+//   function(req, accessToken, refreshToken, profile, done) {
+//     profile._json.access_token = accessToken;
+//     profile._json.refresh_token = refreshToken;
+//     console.log("accessToken:", accessToken);
+//     console.log("refreshToken:", refreshToken);
+//     console.log('JS obj' + profile);
+//     console.log('JSON obj ' + JSON.stringify(profile, null, 2));
+//     var save = {
+//       ['facebook_profile'] : profile
+//     };
+//     responseStore.toDatabase(save, publicProfile);
+//     done(null,profile);
+// }));
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+// passport.deserializeUser(function(obj, done) {
+//   done(null, obj);
+// });
 
 ////////// BOT INTERACTION STARTS HERE //////////
 
