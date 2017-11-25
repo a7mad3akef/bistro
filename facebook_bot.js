@@ -339,7 +339,7 @@ controller.on('facebook_optin', function(bot, message) {
 // (2) Handler for user send picture
 controller.on('message_received', function(bot, message) {
   //Check if conversation is paused, stop bot from replying if paused
-  if (message.paused) { return; }
+  // if (message.paused) { return; }
   // log an unknown intent with Wordhop (notification received in Slack if no handler for what user says)
   // notification is sent to Slack even before user confirms he needs to talk to a human
   if(!message.attachments) {
