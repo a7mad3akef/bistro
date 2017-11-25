@@ -45,7 +45,7 @@ var cloudinary = require('cloudinary');
 
 /*********WORDHOP********/
 // Takeover conversation (pause the bot and allow interaction with the user through Slack)
-var Wordhop = require('wordhop');
+// var Wordhop = require('wordhop');
 // var wordhop = Wordhop(process.env.wordhop_api_key, process.env.wordhop_client_key, {platform: 'messenger', token:process.env.page_token});
 
 /**********bCRM*********/
@@ -242,7 +242,7 @@ controller.hears(menuOptions[4], 'facebook_postback', function(bot, message) {
 // Pause conversation to talk to a human
 controller.hears(menuOptions[3], 'facebook_postback', function(bot, message) {
   console.log('MESSAGE IS ' + message);
-  wordhop.assistanceRequested(message);
+  // wordhop.assistanceRequested(message);
   bot.startConversation(message, assistanceRequest);
 });
 
@@ -343,7 +343,7 @@ controller.on('message_received', function(bot, message) {
   // log an unknown intent with Wordhop (notification received in Slack if no handler for what user says)
   // notification is sent to Slack even before user confirms he needs to talk to a human
   if(!message.attachments) {
-    wordhop.logUnkownIntent(message);
+    // wordhop.logUnkownIntent(message);
     bot.replyWithTyping(message, '🤔');
     bot.startConversation(message, unknownIntent);
   }
@@ -712,7 +712,7 @@ restart = function(response, convo) {
           break;
           case 'talk_to_human':
           console.log('I should  request assistance');
-          wordhop.assistanceRequested(response);
+          // wordhop.assistanceRequested(response);
           assistanceRequest(response, convo);
           break;
           default:
